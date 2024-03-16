@@ -1,0 +1,6 @@
+<div *ngFor="let title of sidebarTitles">
+  <div>{{ title }}</div>
+  <div *ngFor="let route of routes">
+    <div *ngIf="route.sidebarTitle === title">{{ route.title }}</div>
+  </div>
+</div>
