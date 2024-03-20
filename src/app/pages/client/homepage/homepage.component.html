@@ -1,11 +1,13 @@
 <div class="d-flex h-100 w-100 justify-content-center align-items-center" *ngIf="!isOpenGame && !isEndGame">
-    <img class="language-flag" src="../../../../assets/images/en-flag.png" (click)="changeLanguage('en')">
-    <img class="language-flag" src="../../../../assets/images/tr-flag.png" (click)="changeLanguage('tr')">
     <div class="row text-center max-container">
         <div class="col-12 mb-3">
             <img class="home-img" src="../../../../assets/images/home-image.png">
         </div>
         <h1 class="col-12 title">FAST FINGERS</h1>
+        <div class="col-12 text-center">
+            <img class="language-flag" src="../../../../assets/images/en-flag.png" (click)="changeLanguage('en')">
+            <img class="language-flag" src="../../../../assets/images/tr-flag.png" (click)="changeLanguage('tr')">
+        </div>
         <div class="col-6 home-info">
             <img class="home-info-icon" src="../../../../assets/images/health.png"><span class="info-arrow">--></span>
             <span class="info-text">
