@@ -1,1 +1,71 @@
-<p>{{'homepage' | translate}}</p>
+<div class="d-flex h-100 w-100 justify-content-center align-items-center" *ngIf="!isOpenGame && !isEndGame">
+    <img class="language-flag" src="../../../../assets/images/en-flag.png" (click)="changeLanguage('en')">
+    <img class="language-flag" src="../../../../assets/images/tr-flag.png" (click)="changeLanguage('tr')">
+    <div class="row text-center max-container">
+        <div class="col-12 mb-3">
+            <img class="home-img" src="../../../../assets/images/home-image.png">
+        </div>
+        <h1 class="col-12 title">FAST FINGERS</h1>
+        <div class="col-6 home-info">
+            <img class="home-info-icon" src="../../../../assets/images/health.png"><span class="info-arrow">--></span>
+            <span class="info-text">
+                <p>+1 {{'Health' | translate}}</p>
+                <p>+100 {{'Score' | translate}}</p>
+            </span>
+            <hr class="border-bottom">
+            <img class="home-info-icon" src="../../../../assets/images/bomb.png"><span class="info-arrow">--></span>
+            <span class="info-text">
+                <p>-1 {{'Health' | translate}}</p>
+                <p>-100 {{'Score' | translate}}</p>
+            </span>
+        </div>
+        <div class="col-6 home-info border-left pt-3">
+            <p><span class="text-info">1.{{'Level' | translate}}</span>
+                < 300</p>
+                    <p>300 <= <span class="text-info">2.{{'Level' | translate}}</span>
+                            < 1500</p>
+                                <p>1500 <= <span class="text-info">3.{{'Level' | translate}}</span>
+                                        < 5000</p>
+                                            <p>5000 <= <span class="text-info">4.{{'Level' | translate}}</span></p>
+        </div>
+        <div class="col-12">
+            <button class="btn home-start-button" (click)="openGame()">{{'Play' | translate}} <i
+                    class="fa-solid fa-play ml-3"></i></button>
+        </div>
+    </div>
+</div>
+<div class="d-flex h-100 w-100 justify-content-center align-items-center" *ngIf="isOpenGame && !isEndGame">
+    <div class="row text-center">
+        <div class="left-time" *ngIf="leftTime > 0">
+            {{leftTime}}
+        </div>
+        <div *ngIf="leftTime <= 0" class="game-box row">
+            <div class="game-table d-flex justify-content-between">
+                <span class="score-text"><img class="health-img" src="../../../../assets/images/health.png">
+                    x{{healthCount-wrongCount}}</span>
+                <span class="score-text"><img class="health-img" src="../../../../assets/images/speed.png">
+                    x{{(1 + 1- gameSpeed / defaultGameSpeed) | number:'1.2-2'}}</span>
+                <span class="score-text">{{'Score' | translate}}: {{score}}</span>
+            </div>
+            <div class="game-box-frame" [style.backgroundImage]="currentLevel.border"></div>
+            <div *ngFor="let box of currentLevel.boxCount; let i = index"
+                class=" d-flex justify-content-center align-items-center box col-{{currentLevel.col}}"
+                [style.width]="currentLevel.size" [style.height]="currentLevel.size"
+                [style.backgroundColor]="box.bgColor" (click)="onClickMouse(i)">
+                <img class="mouse" src="../../../../assets/images/mouse.png" *ngIf="boxStatus[i]==='show'">
+                <img class="mouse" src="../../../../assets/images/health.png" *ngIf="boxStatus[i]==='health'">
+                <img class="mouse" src="../../../../assets/images/bomb.png" *ngIf="boxStatus[i]==='bomb'">
+                <img class="killed-mouse" *ngIf="boxStatus[i]==='killed'"
+                    src="../../../../assets/images/killed-mouse.png">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrong-bg" *ngIf="isWrong"></div>
+<div *ngIf="isEndGame" class="d-flex h-100 w-100 justify-content-center align-items-center">
+    <span class="text-center">
+        <h1 class="game-over">{{'GAME OVER' | translate}}!</h1>
+        <h2 class="game-over game-over-score">{{'SCORE' | translate}}: {{score}}</h2>
+        <button class="btn home-start-button" (click)="gameReset()">{{'Go To Home' | translate}}</button>
+    </span>
+</div>
