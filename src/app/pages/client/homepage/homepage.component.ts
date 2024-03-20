@@ -134,7 +134,7 @@ export class HomepageComponent implements OnInit {
   public resetBox(resetKey: string) {
     const selectedBox: number = this.boxStatus.findIndex((item: string) => item === resetKey);
 
-    if (selectedBox) {
+    if (selectedBox >= 0) {
       this.boxStatus[selectedBox] = 'none';
     }
   }
