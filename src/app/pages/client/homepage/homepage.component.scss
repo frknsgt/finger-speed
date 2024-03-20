@@ -71,9 +71,7 @@
 }
 
 .wrong-bg {
-    background-image: url(../../../../assets/images/wrong-bg.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-color: rgba(255, 0, 0, 0.2);
     width: 100vw;
     height: 100vh;
     position: absolute;
